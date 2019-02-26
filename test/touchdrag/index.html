@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="mydiv">
+        <h1>click and move</h1>
+    </div>
+
+    <style>
+    
+    #mydiv {
+        position: absolute;
+    }
+    
+    </style>
+
+    <script>
+    
+    const draggable = (element) => {
+    console.dir(element);
+
+    var fingerX;
+    var fingerY;
+
+    var targetX;
+    var targetY;
+
+    element.ontouchstart = function(e){
+
+        fingerX = e.changedTouches[0].clientX;
+        fingerY = e.changedTouches[0].clientY;
+
+        element.ontouchmove = onTouchMove;
+
+        // console.log("on touch start")
+    }
+
+    function onTouchMove(e){
+
+        targetX = fingerX - e.changedTouches[0].clientX;
+        targetY = fingerY - e.changedTouches[0].clientY;
+
+        fingerX = e.changedTouches[0].clientX;
+        fingerY = e.changedTouches[0].clientY;
+
+        element.style.top = (element.offsetTop - targetY) + "px";
+        element.style.left = (element.offsetLeft - targetX) + "px";
+
+
+    }
+
+    element.ontouchend = function(e){
+        // console.log("touch end")
+        // console.dir(e);
+        
+    }
+
+}
+
+draggable(document.getElementById("mydiv"));
+    
+    </script>
+    
+</body>
+</html>
