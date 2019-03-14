@@ -2,27 +2,32 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import CommonUtil from './resources/js/Common_util.js'
+import NavigationBar from './common/NavigationBar.js'
+
 class App extends Component {
 
+  state = {
+    num_1 : 1
+  }
 
-  
+  addNum = () => {
+    this.setState({
+      num_1 : this.state.num_1 + 1
+    })
+  }
+
   render() {
+    
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to 텍스트 reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <NavigationBar></NavigationBar>
+        <h1>hello world</h1>
+        <p>{this.state.num_1}</p>
+        <button onClick={this.addNum}>버튼</button>
+
+        <button onClick={CommonUtil.getNumber}>버튼</button>
+        
       </div>
     );
   }
