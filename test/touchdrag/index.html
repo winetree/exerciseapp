@@ -1,71 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
 
-    <div id="mydiv">
-        <h1>click and move</h1>
+<body>
+    <div id="human">
+        <h1>head</h1>
+        <object id="human" type="image/svg+xml" data="human.svg"></object>
     </div>
 
+    <div>
+        <svg height="100" width="100">
+            <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+        </svg>
+    </div>
     <style>
-    
-    #mydiv {
-        position: absolute;
-    }
-    
+        .box {
+            width: 30%;
+        }
+
+        .abs {
+            position: absolute;
+        }
+
+        #human {
+            position: absolute;
+            max-width: 100%;
+        }
     </style>
 
     <script>
-    
-    const draggable = (element) => {
-    console.dir(element);
+        const draggable = (element) => {
+            console.dir(element);
 
-    var fingerX;
-    var fingerY;
+            var fingerX;
+            var fingerY;
 
-    var targetX;
-    var targetY;
+            var targetX;
+            var targetY;
 
-    element.ontouchstart = function(e){
+            element.ontouchstart = function (e) {
 
-        fingerX = e.changedTouches[0].clientX;
-        fingerY = e.changedTouches[0].clientY;
+                fingerX = e.changedTouches[0].clientX;
+                fingerY = e.changedTouches[0].clientY;
 
-        element.ontouchmove = onTouchMove;
+                element.ontouchmove = onTouchMove;
 
-        // console.log("on touch start")
-    }
+                // console.log("on touch start")
+            }
 
-    function onTouchMove(e){
+            function onTouchMove(e) {
 
-        targetX = fingerX - e.changedTouches[0].clientX;
-        targetY = fingerY - e.changedTouches[0].clientY;
+                targetX = fingerX - e.changedTouches[0].clientX;
+                targetY = fingerY - e.changedTouches[0].clientY;
 
-        fingerX = e.changedTouches[0].clientX;
-        fingerY = e.changedTouches[0].clientY;
+                fingerX = e.changedTouches[0].clientX;
+                fingerY = e.changedTouches[0].clientY;
 
-        element.style.top = (element.offsetTop - targetY) + "px";
-        element.style.left = (element.offsetLeft - targetX) + "px";
+                element.style.top = (element.offsetTop - targetY) + "px";
+                element.style.left = (element.offsetLeft - targetX) + "px";
 
 
-    }
+            }
 
-    element.ontouchend = function(e){
-        // console.log("touch end")
-        // console.dir(e);
-        
-    }
+            element.ontouchend = function (e) {
+                // console.log("touch end")
+                // console.dir(e);
 
-}
+            }
 
-draggable(document.getElementById("mydiv"));
-    
+        }
+
+        draggable(document.getElementById("human"));
     </script>
-    
+
 </body>
+
 </html>
